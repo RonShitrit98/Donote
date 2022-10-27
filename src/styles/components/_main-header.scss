@@ -1,0 +1,13 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 50px;
+  background-color: $Rbcg;
+
+  .main-nav {
+    color: black;
+    & :first-child {
+      margin-right: 10px;
+    }
+  }
+}

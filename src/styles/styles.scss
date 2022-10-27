@@ -1,0 +1,18 @@
+// SETUP
+@import "setup/typography";
+@import "setup/variables";
+@import "setup/_mixins";
+@import "setup/functions";
+
+// BASICS
+@import "basic/base";
+
+// VIEWS
+@import "views/home-view";
+@import "views/todo-view";
+
+// COMPONENTS
+@import "components/main-header";
+
+// COMPONENTS-TODO
+@import "components/todo/todo-display";

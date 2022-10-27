@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <button @click="closeModal">X</button>
-    {{ todo }}
-  </div>
+  <section class="todo-detail">
+    <div>
+      <button @click="closeModal">X</button>
+      {{ todo }}
+    </div>
+  </section>
 </template>
 
 <script>

@@ -1,19 +1,24 @@
 <template>
-  <section>
-    <h1>todos:</h1>
-    <ul>
+  <section class="todo-display">
+    <h1 class="list-title">Todos</h1>
+    <ul class="display-list">
       <li v-for="todo in todos" :key="todo._id">
-        <todo-list :todo="todo" @click="openTodoModal(todo)" />
-        <title-edit
-          :title="todo.title"
-          @changed="updateTodo($event, 'title', todo._id)"
-        />
-        <input
-          :checked="todo.isDone"
-          type="checkbox"
-          @change="updateTodo($event.target.checked, 'isDone', todo._id)"
-        />
-        <button @click="removeTodo(todo._id)">X</button>
+        <div class="todo-info-box" @click="openTodoModal(todo)">
+          <title-edit
+            :title="todo.title"
+            @changed="updateTodo($event, 'title', todo._id)"
+            @click.stop=""
+          />
+          <input
+            :checked="todo.isDone"
+            type="checkbox"
+            @change.stop="updateTodo($event.target.checked, 'isDone', todo._id)"
+            @click.stop=""
+          />
+          <button class="remove-btn" @click.stop="removeTodo(todo._id)">
+            X
+          </button>
+        </div>
       </li>
     </ul>
     <todo-detail
