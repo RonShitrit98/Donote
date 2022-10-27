@@ -1,6 +1,5 @@
 <template>
-  <h1>todo</h1>
-  <todo-list
+  <todo-display v-if="todoStore.todos"
     @updateTodo="updateTodo"
     :todos="todoStore.todos"
     @removeTodo="removeTodo"
@@ -10,7 +9,7 @@
 
 <script>
 import { useTodoStore } from "../stores/todo.store";
-import todoList from "../components/todo-list.vue";
+import todoDisplay from "../components/todo-display.vue";
 import todoCreate from "../components/todo-create.vue";
 export default {
   setup() {
@@ -33,7 +32,7 @@ export default {
     };
   },
   components: {
-    todoList,
+    todoDisplay,
     todoCreate,
   },
   methods: {
