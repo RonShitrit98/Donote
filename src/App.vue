@@ -1,5 +1,8 @@
 <template>
+  <main-header />
   <RouterView />
 </template>
 
-<script setup></script>
+<script setup>
+import mainHeader from "./components/main-header.vue";
+</script>
