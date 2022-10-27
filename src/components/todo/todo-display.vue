@@ -4,10 +4,15 @@
     <ul>
       <li v-for="todo in todos" :key="todo._id">
         <todo-list :todo="todo" @click="openTodoModal(todo)" />
-        <form @change.stop="updateTodo($event, todo._id)">
-          <input :value="todo.title" id="title" type="text" />
-          <input :checked="todo.isDone" id="isDone" type="checkbox" />
-        </form>
+        <title-edit
+          :title="todo.title"
+          @changed="updateTodo($event, 'title', todo._id)"
+        />
+        <input
+          :checked="todo.isDone"
+          type="checkbox"
+          @change="updateTodo($event.target.checked, 'isDone', todo._id)"
+        />
         <button @click="removeTodo(todo._id)">X</button>
       </li>
     </ul>
@@ -22,19 +27,20 @@
 <script>
 import todoList from "./todo-list.vue";
 import todoDetail from "./todo-detail.vue";
+import titleEdit from "../util/title-edit.vue";
 export default {
   data() {
     return {
       currTodo: null,
     };
   },
-  components: { todoList, todoDetail },
+  components: { todoList, todoDetail, titleEdit },
   props: {
     todos: Array,
   },
   methods: {
-    updateTodo(ev, todoId) {
-      this.$emit("updateTodo", ev.target, todoId);
+    updateTodo(value, key, id) {
+      this.$emit("updateTodo", value, key, id);
     },
     removeTodo(todoId) {
       this.$emit("removeTodo", todoId);

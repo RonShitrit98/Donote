@@ -1,5 +1,6 @@
 <template>
-  <todo-display v-if="todoStore.todos"
+  <todo-display
+    v-if="todoStore.todos"
     @updateTodo="updateTodo"
     :todos="todoStore.todos"
     @removeTodo="removeTodo"
@@ -9,8 +10,8 @@
 
 <script>
 import { useTodoStore } from "../stores/todo.store";
-import todoDisplay from "../components/todo-display.vue";
-import todoCreate from "../components/todo-create.vue";
+import todoDisplay from "../components/todo/todo-display.vue";
+import todoCreate from "../components/todo/todo-create.vue";
 export default {
   setup() {
     const todoStore = useTodoStore();
@@ -47,13 +48,13 @@ export default {
     getEmptyTodo() {
       this.todo = this.todoStore.getEmptyTodo();
     },
-    async updateTodo(target, todoId) {
-      var value = target.value;
-      if (target.id === "isDone") {
-        value = target.checked;
-      }
+    async updateTodo(value, key, id) {
+      // var value = target.value;
+      // if (target.id === "isDone") {
+      //   value = target.checked;
+      // }
       try {
-        await this.todoStore.updateTodo(todoId, target.id, value);
+        await this.todoStore.updateTodo(value, key, id);
       } catch (error) {
         console.log(error);
       }

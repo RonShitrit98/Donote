@@ -28,7 +28,7 @@ export const useTodoStore = defineStore("todo", {
     getEmptyTodo() {
       return todoService.getEmptyTodo();
     },
-    async updateTodo(id, key, value) {
+    async updateTodo(value, key, id) {
       try {
         const todo = this.todos.find((todo) => id === todo._id);
         todo[key] = value;
