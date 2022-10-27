@@ -3,6 +3,8 @@ export const todoService = {
   createTodo,
   loadTodos,
   getEmptyTodo,
+  updateTodo,
+  removeTodo,
 };
 
 const TODO_KEY = "todoDB";
@@ -23,9 +25,17 @@ async function loadTodos() {
   }
 }
 
-function getEmptyTodo(){
+function getEmptyTodo() {
   return {
-    title:'', 
-    isDone:false,
-  }
+    title: "",
+    isDone: false,
+  };
+}
+
+async function updateTodo(todo) {
+  return storageService.put(TODO_KEY, todo);
+}
+
+async function removeTodo(id) {
+  await storageService.remove(TODO_KEY, id);
 }

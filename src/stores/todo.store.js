@@ -25,8 +25,24 @@ export const useTodoStore = defineStore("todo", {
         console.log(error);
       }
     },
-    getEmptyTodo(){
-      return todoService.getEmptyTodo()
-    }
+    getEmptyTodo() {
+      return todoService.getEmptyTodo();
+    },
+    async updateTodo(id, key, value) {
+      try {
+        const todo = this.todos.find((todo) => id === todo._id);
+        todo[key] = value;
+        const updatedTodo = await todoService.updateTodo(todo);
+      } catch (error) {}
+    },
+    async removeTodo(id) {
+      try {
+        const idx = this.todos.findIndex((todo) => todo._id === id);
+        this.todos.splice(idx, 1);
+        await todoService.removeTodo(id);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });

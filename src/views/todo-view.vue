@@ -1,6 +1,10 @@
 <template>
   <h1>todo</h1>
-  <todo-list :todos="todoStore.todos" />
+  <todo-list
+    @updateTodo="updateTodo"
+    :todos="todoStore.todos"
+    @removeTodo="removeTodo"
+  />
   <todo-create :todo="todo" @createTodo="createTodo" />
 </template>
 
@@ -43,7 +47,24 @@ export default {
     },
     getEmptyTodo() {
       this.todo = this.todoStore.getEmptyTodo();
-      console.log(this.todo);
+    },
+    async updateTodo(target, todoId) {
+      var value = target.value;
+      if (target.id === "isDone") {
+        value = target.checked;
+      }
+      try {
+        await this.todoStore.updateTodo(todoId, target.id, value);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async removeTodo(id) {
+      try {
+        await this.todoStore.removeTodo(id);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
