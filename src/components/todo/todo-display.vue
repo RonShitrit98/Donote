@@ -9,15 +9,15 @@
             @changed="updateTodo($event, 'title', todo._id)"
             @click.stop=""
           />
+          <button class="remove-btn" @click.stop="removeTodo(todo._id)">
+            X
+          </button>
           <input
             :checked="todo.isDone"
             type="checkbox"
             @change.stop="updateTodo($event.target.checked, 'isDone', todo._id)"
             @click.stop=""
           />
-          <button class="remove-btn" @click.stop="removeTodo(todo._id)">
-            X
-          </button>
         </div>
       </li>
     </ul>

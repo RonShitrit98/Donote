@@ -1,0 +1,16 @@
+.title-edit {
+    .title-edit-input,
+    .title-display {
+        background-color: transparent;
+        border: none;
+        &:focus {
+            //   border: none;
+        }
+    }
+    .title-edit-input {
+      width: 100%;
+    &.hidden {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.todo-display {
+  .display-list {
+    display: flex;
+    flex-direction: column;
+    .todo-info-box {
+      display: grid;
+      grid-template-columns: 80% 10% 10% ;
+      background-color: aqua;
+    }
+  }
+}
