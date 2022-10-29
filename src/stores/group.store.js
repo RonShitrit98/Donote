@@ -3,15 +3,20 @@ import { defineStore } from "pinia";
 export const useGroupStore = defineStore("group", {
   state: () => {
     return {
-      currGroup, 
-      curr
+      currGroup: null,
+      groups: null,
     };
   },
   getters: {},
   actions: {
-    async createGroup(group){
-      const newGroup = await groupService.createGroup(group)
-      console.log(newGroup)
-    }
+    async createGroup(group) {
+      const newGroup = await groupService.createGroup(group);
+      this.currGroup = newGroup;
+      this.groups.push(newGroup);
+    },
+    async loadGroups() {
+      const groups = await groupService.loadGroups();
+      this.groups = groups;
+    },
   },
 });

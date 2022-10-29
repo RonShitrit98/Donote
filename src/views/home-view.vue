@@ -1,6 +1,7 @@
 <template>
   <h1>home</h1>
   <group-create @createGroup="createGroup" />
+  <pre>{{ groupStore.groups }}</pre>
 </template>
 
 <script>
@@ -20,6 +21,13 @@ export default {
         console.log(error);
       }
     },
+  },
+  async created() {
+    try {
+      await this.groupStore.loadGroups();
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 </script>
