@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useGroupStore } from "./group.store";
 import { todoService } from "../services/todo-service";
 export const useTodoStore = defineStore("todo", {
   state: () => {
@@ -6,7 +7,11 @@ export const useTodoStore = defineStore("todo", {
       todos: null,
     };
   },
-  getters: {},
+  getters: {
+    groupStore() {
+      return useGroupStore();
+    },
+  },
   actions: {
     async createTodo(todo) {
       try {
@@ -17,10 +22,13 @@ export const useTodoStore = defineStore("todo", {
         console.log(error);
       }
     },
-    async loadTodos() {
+    async loadTodos(groupId) {
       try {
-        const todos = await todoService.loadTodos();
-        this.todos = todos;
+        const group = await this.groupStore.loadGroup(groupId);
+        if(!group.todos) return
+        this.todos = group.todos
+        // const todos = await todoService.loadTodos();
+        // this.todos = todos;
       } catch (error) {
         console.log(error);
       }

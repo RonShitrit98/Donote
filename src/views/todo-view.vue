@@ -3,10 +3,10 @@
     <group-display />
     <div>
       <todo-display
-      v-if="todoStore.todos"
-      @updateTodo="updateTodo"
-      :todos="todoStore.todos"
-      @removeTodo="removeTodo"
+        v-if="todoStore.todos"
+        @updateTodo="updateTodo"
+        :todos="todoStore.todos"
+        @removeTodo="removeTodo"
       />
       <todo-create :todo="todo" @createTodo="createTodo" />
     </div>
@@ -28,7 +28,7 @@ export default {
   async created() {
     try {
       this.getEmptyTodo();
-      this.todoStore.loadTodos();
+      this.loadTodos(this.$route.params.id);
     } catch (error) {
       console.log(error);
     }
@@ -73,6 +73,14 @@ export default {
         console.log(error);
       }
     },
+    async loadTodos(id){
+      this.todoStore.loadTodos(id);
+    }
   },
+  watch:{
+    $route(newValue){
+      this.loadTodos(newValue.params.id)
+    }
+  }
 };
 </script>

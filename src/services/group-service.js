@@ -3,6 +3,7 @@ export const groupService = {
   createGroup,
   loadGroups,
   getEmptyGroup,
+  query,
 };
 
 const GROUP_KEY = "groupDB";
@@ -20,4 +21,13 @@ function getEmptyGroup() {
     title: null,
     todos: [],
   };
+}
+
+async function query(id) {
+  try {
+    const groups = await storageService.query(GROUP_KEY)
+    return groups.find(group => group._id === id)
+  } catch (error) {
+    console.log(error);
+  }
 }

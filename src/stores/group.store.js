@@ -18,5 +18,14 @@ export const useGroupStore = defineStore("group", {
       const groups = await groupService.loadGroups();
       this.groups = groups;
     },
+    async loadGroup(id) {
+      try {
+        const group = await groupService.query(id);
+        this.currGroup = group
+        return group
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });

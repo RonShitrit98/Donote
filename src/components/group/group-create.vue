@@ -8,20 +8,24 @@
 </template>
 
 <script>
+import { groupService } from "../../services/group-service";
 export default {
   data() {
     return {
-      newGroup: {
-        title: null,
-      },
+      newGroup: null
     };
   },
   methods: {
     createGroup() {
       this.$emit("createGroup", this.newGroup);
+      this.getEmptyGroup()
     },
+    getEmptyGroup() {
+      this.newGroup = groupService.getEmptyGroup();
+    },
+  },
+  created() {
+    this.getEmptyGroup();
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
