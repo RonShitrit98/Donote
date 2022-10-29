@@ -1,16 +1,22 @@
 <template>
-  <todo-display
-    v-if="todoStore.todos"
-    @updateTodo="updateTodo"
-    :todos="todoStore.todos"
-    @removeTodo="removeTodo"
-  />
-  <todo-create :todo="todo" @createTodo="createTodo" />
+  <section class="todo-view">
+    <group-display />
+    <div>
+      <todo-display
+      v-if="todoStore.todos"
+      @updateTodo="updateTodo"
+      :todos="todoStore.todos"
+      @removeTodo="removeTodo"
+      />
+      <todo-create :todo="todo" @createTodo="createTodo" />
+    </div>
+  </section>
 </template>
 
 <script>
 import { useTodoStore } from "../stores/todo.store";
 import todoDisplay from "../components/todo/todo-display.vue";
+import groupDisplay from "../components/group/group-display.vue";
 import todoCreate from "../components/todo/todo-create.vue";
 export default {
   setup() {
@@ -35,6 +41,7 @@ export default {
   components: {
     todoDisplay,
     todoCreate,
+    groupDisplay,
   },
   methods: {
     async createTodo(todo) {
