@@ -1,6 +1,5 @@
 <template>
-  <section>
-    <h1>Groups</h1>
+  <section class="group-display">
     <group-list
       @removeGroup="removeGroup"
       @editGroup="editGroup"
@@ -8,10 +7,12 @@
     />
     <groupCreate :newGroup="newGroup" @createGroup="createGroup" />
   </section>
-  <div v-if="groupEditId">
-    <input type="text" :value="groupEditTitle" @keyup="updateGroup($event)" />
-    <button @click="groupEditId = false">X</button>
-  </div>
+  <section class="group-edit">
+    <div v-if="groupEditId">
+      <input type="text" :value="groupEditTitle" @keyup="updateGroup($event)" />
+      <button @click="groupEditId = false">X</button>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -45,7 +46,7 @@ export default {
       this.groupEditId = id;
     },
     removeGroup(id) {
-      this.groupStore.removeGroup(id)
+      this.groupStore.removeGroup(id);
     },
     async updateGroup(ev) {
       try {

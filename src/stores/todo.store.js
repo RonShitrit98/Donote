@@ -11,16 +11,19 @@ export const useTodoStore = defineStore("todo", {
     groupStore() {
       return useGroupStore();
     },
-    currGroupId(){
-      return this.groupStore.currGroup._id
-    }
+    currGroupId() {
+      return this.groupStore.currGroup._id;
+    },
+    currGroupTitle() {
+      return this.groupStore.currGroup.title;
+    },
   },
   actions: {
     async createTodo(todo) {
       try {
         const newTodo = await todoService.createTodo(todo, this.currGroupId);
         this.todos.push(newTodo);
-        this.groupStore.loadGroup(this.currGroupId)
+        this.groupStore.loadGroup(this.currGroupId);
       } catch (error) {
         console.log(error);
       }
@@ -28,10 +31,8 @@ export const useTodoStore = defineStore("todo", {
     async loadTodos(groupId) {
       try {
         const group = await this.groupStore.loadGroup(groupId);
-        if(!group.todos) return
-        this.todos = group.todos
-        // const todos = await todoService.loadTodos();
-        // this.todos = todos;
+        if (!group.todos) return;
+        this.todos = group.todos;
       } catch (error) {
         console.log(error);
       }
@@ -44,9 +45,9 @@ export const useTodoStore = defineStore("todo", {
         const todo = this.todos.find((todo) => id === todo._id);
         todo[key] = value;
         await todoService.updateTodo(todo, this.currGroupId);
-        this.groupStore.loadGroup(this.currGroupId)
+        this.groupStore.loadGroup(this.currGroupId);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     async removeTodo(id) {

@@ -1,34 +1,36 @@
 <template>
   <section class="todo-view">
     <group-display />
-    <div>
       <todo-display
         v-if="todoStore.todos"
         @updateTodo="updateTodo"
         :todos="todoStore.todos"
         @removeTodo="removeTodo"
       />
-      <todo-create :todo="todo" @createTodo="createTodo" />
-    </div>
+     
   </section>
 </template>
 
 <script>
 import { useTodoStore } from "../stores/todo.store";
+import { useGroupStore } from "../stores/group.store";
 import todoDisplay from "../components/todo/todo-display.vue";
 import groupDisplay from "../components/group/group-display.vue";
 import todoCreate from "../components/todo/todo-create.vue";
 export default {
   setup() {
     const todoStore = useTodoStore();
+    const groupStore = useGroupStore();
     return {
       todoStore,
+      groupStore
     };
   },
   async created() {
     try {
       this.getEmptyTodo();
       this.loadTodos(this.$route.params.id);
+      await this.groupStore.loadGroups()
     } catch (error) {
       console.log(error);
     }
@@ -44,14 +46,6 @@ export default {
     groupDisplay,
   },
   methods: {
-    async createTodo(todo) {
-      try {
-        await this.todoStore.createTodo(todo);
-        this.getEmptyTodo();
-      } catch (error) {
-        console.log(error);
-      }
-    },
     getEmptyTodo() {
       this.todo = this.todoStore.getEmptyTodo();
     },

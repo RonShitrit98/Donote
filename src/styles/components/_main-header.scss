@@ -1,8 +1,11 @@
 .main-header {
   display: flex;
   justify-content: space-between;
-  padding: 10px 50px;
-  background-color: $Rbcg;
+  align-items: flex-end;
+  padding: 30px 100px;
+  border-bottom: dashed 3px purple;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  height: 10vh;
 
   .main-nav {
     color: black;
