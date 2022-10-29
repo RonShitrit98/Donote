@@ -21,11 +21,16 @@ export const useGroupStore = defineStore("group", {
     async loadGroup(id) {
       try {
         const group = await groupService.query(id);
-        this.currGroup = group
-        return group
+        this.currGroup = group;
+        return group;
       } catch (error) {
         console.log(error);
       }
+    },
+    async updateGroup(value, key, id) {
+      const group = this.groups.find((group) => id === group._id);
+      group[key] = value;
+      await groupService.updateGroup(group);
     },
   },
 });
