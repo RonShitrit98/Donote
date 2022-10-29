@@ -1,4 +1,6 @@
 import { storageService } from "./async-storage-service";
+import { groupService } from "./group-service";
+import { utilService } from "./util-service";
 export const todoService = {
   createTodo,
   loadTodos,
@@ -9,9 +11,13 @@ export const todoService = {
 
 const TODO_KEY = "todoDB";
 
-async function createTodo(todo) {
+async function createTodo(todo, groupId) {
   try {
-    return storageService.post(TODO_KEY, todo);
+    todo._id = await utilService.makeId(8);
+    const group = await groupService.query(groupId);
+    group.todos.push(todo);
+    await groupService.updateGroup(group);
+    return todo;
   } catch (error) {
     console.log(error);
   }
@@ -32,10 +38,16 @@ function getEmptyTodo() {
   };
 }
 
-async function updateTodo(todo) {
-  return storageService.put(TODO_KEY, todo);
+async function updateTodo(todo, groupId) {
+  const group = await groupService.query(groupId);
+  const idx = group.todos.findIndex((t) => todo._id === t._id);
+  group.todos.splice(idx, 1, todo);
+  await groupService.updateGroup(group);
 }
 
-async function removeTodo(id) {
-  await storageService.remove(TODO_KEY, id);
+async function removeTodo(id, groupId) {
+  const group = await groupService.query(groupId);
+  const idx = group.todos.findIndex((todo) => todo._id === id);
+  group.todos.splice(idx, 1);
+  await groupService.updateGroup(group);
 }

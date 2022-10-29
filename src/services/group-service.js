@@ -4,6 +4,7 @@ export const groupService = {
   loadGroups,
   getEmptyGroup,
   query,
+  updateGroup
 };
 
 const GROUP_KEY = "groupDB";
@@ -30,4 +31,8 @@ async function query(id) {
   } catch (error) {
     console.log(error);
   }
+}
+
+function updateGroup(group){
+  return storageService.put(GROUP_KEY, group)
 }
