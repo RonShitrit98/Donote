@@ -10,6 +10,11 @@ const router = createRouter({
       name: "home",
       component: homeView,
     },
+    // {
+    //   path: "/todo/:id",
+    //   name: "todo",
+    //   component: todoView,
+    // },
     {
       path: "/todo",
       name: "todo",
