@@ -8,16 +8,16 @@ export const useUserStore = defineStore("user", {
   },
   getters: {},
   actions: {
-    async createUser(user) {
+    async signup(user) {
       try {
-        const newUser = await userService.createUser(user);
+        const newUser = await userService.signup(user);
         console.log(newUser)
         this.currUser = newUser;
       } catch (error) {
         console.log(error);
       }
     },
-    async signup(creds) {
+    async login(creds) {
       const user = await userService.login(creds)
       this.currUser = user
     },

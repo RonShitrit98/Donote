@@ -1,17 +1,8 @@
 <template>
-  <section>
-    <h1>Signup</h1>
+  <section class="user-signup">
     <form @submit.prevent="signup">
-      <input
-        type="text"
-        placeholder="username"
-        v-model="credentials.username"
-      />
-      <input
-        type="password"
-        placeholder="password"
-        v-model="credentials.password"
-      />
+      <input type="text" placeholder="username" v-model="user.username" />
+      <input type="password" placeholder="password" v-model="user.password" />
       <input type="submit" />
     </form>
   </section>
@@ -21,7 +12,7 @@
 export default {
   data() {
     return {
-      credentials: {
+      user: {
         username: null,
         password: null,
       },
@@ -29,10 +20,8 @@ export default {
   },
   methods: {
     signup() {
-      this.$emit("signup", this.credentials);
+      this.$emit("signup", this.user);
     },
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
