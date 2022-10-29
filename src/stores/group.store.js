@@ -32,5 +32,14 @@ export const useGroupStore = defineStore("group", {
       group[key] = value;
       await groupService.updateGroup(group);
     },
+    async removeGroup(id) {
+      try {
+        const idx = this.groups.findIndex((group) => id === group._id);
+        this.groups.splice(idx, 1);
+        await groupService.removeGroup(id);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });

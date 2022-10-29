@@ -45,7 +45,7 @@ export default {
       this.groupEditId = id;
     },
     removeGroup(id) {
-      console.log(id);
+      this.groupStore.removeGroup(id)
     },
     async updateGroup(ev) {
       try {
