@@ -1,0 +1,35 @@
+.group-list {
+  padding-top: 20px;
+  font-family: pangolin;
+  font-size: 30px;
+  ul {
+    padding: 0px 10px ;
+    li {
+        display: flex;
+        justify-content: space-between;
+      padding: 20px 0px;
+      list-style: none;
+      a {
+        text-decoration: none;
+        color: rgba(43, 14, 49, 0.733);
+        width: 100%;
+      }
+      button{
+        display: none;
+        background-color: transparent;
+        border: none;
+        &:hover{
+            cursor: pointer;
+            background-color: rgba($color: #000000, $alpha: 0.1);
+        }
+      }
+      &:hover{
+        cursor: pointer;
+        background-color: rgba($color: #000000, $alpha: 0.1);
+        button{
+            display: block;
+        }
+      }
+    }
+  }
+}
