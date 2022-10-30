@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     openEdit() {
-      this.$emit("openEdit");
+      this.$emit("openEdit", { withCredentails: true });
     },
   },
 };

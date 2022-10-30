@@ -19,9 +19,8 @@ export default {
   async created() {
     await this.userStore.loadUser();
     if (this.userStore.currUser) {
-      this.$router.push(`/user/${this.userStore.currUser._id}`);
+    this.$router.push(`/user/${this.userStore.currUser._id}`);
     }
-    console.log(this.userStore.currUser);
   },
   methods: {
     async signup(user) {

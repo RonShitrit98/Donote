@@ -1,10 +1,13 @@
+import Axios from "axios";
 import { storageService } from "./async-storage-service";
 import { httpService } from "./http-service";
+
 export const userService = {
   signup,
   login,
   loadUser,
-  findUserById
+  findUserById,
+  logout,
 };
 
 const USER_KEY = "userDB";
@@ -18,15 +21,7 @@ async function signup(user) {
 }
 
 async function login(creds) {
-  try {
-    // const users = await storageService.query(USER_KEY);
-    // const user = users.find(
-    //   (user) => user.password === password && user.username === username
-    // );
-    return httpService.post("auth/login", creds, true);
-  } catch (error) {
-    console.log(error);
-  }
+  return httpService.post("auth/login", creds, true);
 }
 
 async function findUserById(id) {
@@ -35,6 +30,11 @@ async function findUserById(id) {
   return user;
 }
 
-async function loadUser(){
-  return httpService.get('auth', {}, true)
+async function loadUser() {
+  return httpService.get("auth");
+}
+
+async function logout() {
+  console.log('logging out')
+  return httpService.post("auth/logout");
 }

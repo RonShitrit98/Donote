@@ -21,7 +21,7 @@ export const useUserStore = defineStore("user", {
       const user = await userService.login(creds);
       this.currUser = user;
     },
-    async loadUser(id) {
+    async loadUser() {
       try {
         const user = await userService.loadUser();
         this.currUser = user;
@@ -37,5 +37,9 @@ export const useUserStore = defineStore("user", {
         console.log(error);
       }
     },
+    async logout(){
+      this.currUser = null
+      await userService.logout()
+    }
   },
 });

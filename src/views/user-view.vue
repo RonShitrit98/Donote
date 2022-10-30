@@ -6,6 +6,7 @@
       @openEdit="toggleEdit"
     />
     <div v-if="isEditing">edit Modal</div>
+    <button @click="logout">Logout</button>
   </section>
 </template>
 
@@ -35,6 +36,12 @@ export default {
     },
     toggleEdit() {
       this.isEditing = !this.isEditing;
+    },
+    async logout() {
+      try {
+        await this.userStore.logout();
+        this.$router.push('/auth')
+      } catch (error) {}
     },
   },
   computed: {
