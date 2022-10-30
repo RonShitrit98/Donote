@@ -16,19 +16,26 @@ export default {
     const userStore = useUserStore();
     return { userStore };
   },
+  async created() {
+    await this.userStore.loadUser();
+    if (this.userStore.currUser) {
+      this.$router.push(`/user/${this.userStore.currUser._id}`);
+    }
+    console.log(this.userStore.currUser);
+  },
   methods: {
     async signup(user) {
       try {
         await this.userStore.signup(user);
         this.$router.push(`/user/${this.userStore.currUser._id}`);
-    } catch (error) {
+      } catch (error) {
         console.log(error);
-    }
-},
-async login(credentials){
-    await this.userStore.login(credentials)
-    this.$router.push(`/user/${this.userStore.currUser._id}`);
-    }
+      }
+    },
+    async login(credentials) {
+      await this.userStore.login(credentials);
+      this.$router.push(`/user/${this.userStore.currUser._id}`);
+    },
   },
 };
 </script>

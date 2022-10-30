@@ -23,6 +23,14 @@ export const useUserStore = defineStore("user", {
     },
     async loadUser(id) {
       try {
+        const user = await userService.loadUser();
+        this.currUser = user;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async findUserById(id) {
+      try {
         const user = await userService.loadUser(id);
         this.userToDisplay = user;
       } catch (error) {
