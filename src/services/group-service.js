@@ -1,21 +1,27 @@
 import { storageService } from "./async-storage-service";
+import { httpService } from "./http-service";
 export const groupService = {
   createGroup,
   loadGroups,
   getEmptyGroup,
   query,
   updateGroup,
-  removeGroup
+  removeGroup,
 };
 
 const GROUP_KEY = "groupDB";
 
 async function createGroup(group) {
-  return storageService.post(GROUP_KEY, group);
+  try {
+    return httpService.post("group/create", group);
+  } catch (error) {
+    console.log(error);
+  }
+  // return storageService.post(GROUP_KEY, group);
 }
 
 async function loadGroups() {
-  return storageService.query(GROUP_KEY);
+  return httpService.get("group");
 }
 
 function getEmptyGroup() {
@@ -27,17 +33,19 @@ function getEmptyGroup() {
 
 async function query(id) {
   try {
-    const groups = await storageService.query(GROUP_KEY)
-    return groups.find(group => group._id === id)
+    return httpService.get(`group/${id}`);
+    const groups = await storageService.query(GROUP_KEY);
+    return groups.find((group) => group._id === id);
   } catch (error) {
     console.log(error);
   }
 }
 
-async function updateGroup(group){
-  return storageService.put(GROUP_KEY, group)
+async function updateGroup(group) {
+  return httpService.put("group/update", group);
+  // return storageService.put(GROUP_KEY, group);
 }
 
-async function removeGroup(id){
-  return storageService.remove(GROUP_KEY, id)
+async function removeGroup(id) {
+  return storageService.remove(GROUP_KEY, id);
 }

@@ -21,6 +21,7 @@ export const useGroupStore = defineStore("group", {
     async loadGroup(id) {
       try {
         const group = await groupService.query(id);
+        // console.log(group)
         this.currGroup = group;
         return group;
       } catch (error) {

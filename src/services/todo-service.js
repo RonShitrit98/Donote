@@ -11,10 +11,10 @@ export const todoService = {
 
 const TODO_KEY = "todoDB";
 
-async function createTodo(todo, groupId) {
+async function createTodo(todo, group) {
   try {
     todo._id = await utilService.makeId(8);
-    const group = await groupService.query(groupId);
+    // const group = await groupService.query(groupId);
     group.todos.push(todo);
     await groupService.updateGroup(group);
     return todo;

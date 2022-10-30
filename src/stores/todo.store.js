@@ -17,13 +17,16 @@ export const useTodoStore = defineStore("todo", {
     currGroupTitle() {
       return this.groupStore.currGroup.title;
     },
+    currGroup() {
+      return this.groupStore.currGroup;
+    },
   },
   actions: {
     async createTodo(todo) {
       try {
-        const newTodo = await todoService.createTodo(todo, this.currGroupId);
-        this.todos.push(newTodo);
-        this.groupStore.loadGroup(this.currGroupId);
+        const newTodo = await todoService.createTodo(todo, {...this.currGroup});
+        // this.todos.push(newTodo);
+        // this.groupStore.loadGroup(this.currGroupId);
       } catch (error) {
         console.log(error);
       }
