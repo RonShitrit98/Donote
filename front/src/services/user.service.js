@@ -2,6 +2,7 @@ import { storageService } from "./async-storage-service";
 export const userService = {
   signup,
   login,
+  loadUser,
 };
 
 const USER_KEY = "userDB";
@@ -24,4 +25,10 @@ async function login({ username, password }) {
   } catch (error) {
     console.log(error);
   }
+}
+
+async function loadUser(id) {
+  const users = await storageService.query(USER_KEY);
+  const user = users.find((user) => user._id === id);
+  return user;
 }

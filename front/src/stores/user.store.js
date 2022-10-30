@@ -4,6 +4,7 @@ export const useUserStore = defineStore("user", {
   state: () => {
     return {
       currUser: null,
+      userToDisplay: null,
     };
   },
   getters: {},
@@ -11,15 +12,22 @@ export const useUserStore = defineStore("user", {
     async signup(user) {
       try {
         const newUser = await userService.signup(user);
-        console.log(newUser)
         this.currUser = newUser;
       } catch (error) {
         console.log(error);
       }
     },
     async login(creds) {
-      const user = await userService.login(creds)
-      this.currUser = user
+      const user = await userService.login(creds);
+      this.currUser = user;
+    },
+    async loadUser(id) {
+      try {
+        const user = await userService.loadUser(id);
+        this.userToDisplay = user;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 });
