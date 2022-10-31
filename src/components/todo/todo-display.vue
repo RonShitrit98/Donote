@@ -2,31 +2,33 @@
   <section class="todo-display">
     <div></div>
     <h1 class="list-title">{{ groupTitle }}</h1>
-    <ul class="display-list">
-      <li v-for="todo in todos" :key="todo._id">
-        <div class="todo-info-box" @click="openTodoModal(todo)">
-          <!-- <input
-            class="todo-checkbox"
-            :checked="todo.isDone"
-            type="checkbox"
-            @change.stop="updateTodo($event.target.checked, 'isDone', todo._id)"
-            @click.stop=""
-          /> -->
-          <button
-            :class="['check-btn', todo.isDone ? 'checked' : '']"
-            @click.stop="updateTodo(!todo.isDone, 'isDone', todo._id)"
-          ></button>
-          <title-edit
-            :title="todo.title"
-            @changed="updateTodo($event, 'title', todo._id)"
-            @click.stop=""
-          />
-          <button class="remove-btn" @click.stop="removeTodo(todo._id)">
-            X
-          </button>
-        </div>
-      </li>
-    </ul>
+    <div class="display-list-box">
+      <ul class="display-list">
+        <li v-for="todo in todos" :key="todo._id">
+          <div class="todo-info-box" @click="openTodoModal(todo)">
+            <!-- <input
+              class="todo-checkbox"
+              :checked="todo.isDone"
+              type="checkbox"
+              @change.stop="updateTodo($event.target.checked, 'isDone', todo._id)"
+              @click.stop=""
+              /> -->
+            <button
+              :class="['check-btn', todo.isDone ? 'checked' : '']"
+              @click.stop="updateTodo(!todo.isDone, 'isDone', todo._id)"
+            ></button>
+            <title-edit
+              :title="todo.title"
+              @changed="updateTodo($event, 'title', todo._id)"
+              @click.stop=""
+            />
+            <button class="remove-btn" @click.stop="removeTodo(todo._id)">
+              X
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
     <todo-create :todo="todo" @createTodo="createTodo" />
     <todo-detail
       :todo="currTodo"

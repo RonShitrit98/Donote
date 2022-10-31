@@ -8,153 +8,159 @@
     #00000043 112px,
     transparent 112px
   );
+  &:after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: url("./src/assets/imgs/2.jpg");
+    opacity: 0.6;
+    z-index: -1;
+  }
   // height: 100%;
   //   background-image: url("./src/assets/imgs/1.jpg");
   //   background-size: 1240px 1240px;
   display: flex;
   flex-direction: column;
+  &:before {
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: 100%;
+    right: 130px;
+    top: 0;
+    // left: -130px;
+    background: repeating-linear-gradient(
+      0deg,
+      black 0,
+      black 8px,
+      transparent 8px,
+      transparent 16px
+    );
+    background-repeat: no-repeat;
+  }
   .list-title {
     height: 99px;
     padding: 20px;
     font-family: amaticBold;
     font-size: 50px;
     text-align: center;
-    // padding:30px 10px ;
-
-    &:before {
-      position: absolute;
-      content: "";
-      transform: scaleX(-1) ;
-      // background-color: #000000;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: -130px;
-      background: repeating-linear-gradient(
-        0deg,
-        black 0,
-        black 8px,
-        transparent 8px,
-        transparent 16px
-      );
-      background-size: 2px, 100%;
-      background-repeat: no-repeat;
-      // transform: translate(-50%, -50%);
-      // top: 50%;
-      // left: clacl;
-    }
   }
-
-  .display-list {
+  .display-list-box {
     height: 100%;
-    background: repeating-linear-gradient(
-      180deg,
-      #00000033 0,
-      #00000033 2px,
-      transparent 2px,
-      transparent 40px
-    );
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    padding: 12px 0px 0px 0px;
-    .todo-info-box {
-      padding: 0px 0px 0px 0px;
-      position: relative;
-      input {
-        margin-left: 10px;
-        font-family: caveat;
-        font-size: 30px;
-      }
-      height: 40px;
-      display: grid;
-      grid-template-columns: 112px 1fr 100px;
-
-      // margin-bottom: 12px;
-      .remove-btn {
-        background-color: transparent;
-        border: none;
-        color: rgba($color: #000000, $alpha: 0.2);
-        font-family: caveat;
-        font-size: 30px;
-        &:hover {
-          cursor: pointer;
-          color: #ff000081;
-          font-weight: bold;
-        }
-      }
-      .todo-checkbox,
-      .check-btn {
-        // position: relative;
-        // top: %;
-        left: 15px;
-        width: 30px;
-        height: 30px;
-        margin-left: 50px;
-        // margin: auto;
-      }
-      .check-btn {
+    overflow: auto;
+    .display-list {
+      // overflow:auto;
+      // height: 100%;
+      background: repeating-linear-gradient(
+        180deg,
+        #00000033 0,
+        #00000033 2px,
+        transparent 2px,
+        transparent 40px
+      );
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      padding: 12px 0px 0px 0px;
+      .todo-info-box {
+        padding: 0px 0px 0px 0px;
         position: relative;
-        background-color: transparent;
-        &:before {
-          position: absolute;
-          content: "";
-          width: 45px;
-          height: 45px;
-          // background-color: antiquewhite;
-          transform: translate(-50%, -50%) rotate(45deg);
-          // left: 0;
-          // top: 100%;
-          left: -10%;
-          top: 110%;
-
-          // background: linear-gradient(
-          //     45deg,
-          //     transparent 24px,
-          //     black 24px,
-          //     black 26px,
-          //     transparent 26px
-          //   ),
-          //   linear-gradient(
-          //     -45deg,
-          //     transparent 24px,
-          //     black 24px,
-          //     black 26px,
-          //     transparent 26px
-          //   );
-          //   // background-size: 50% 100% ;
-          //   // background-repeat: no-repeat;
-          // border-radius: 20%;
-          // visibility: hidden;
+        input {
+          margin-left: 10px;
+          font-family: caveat;
+          font-size: 30px;
         }
+        height: 40px;
+        display: grid;
+        grid-template-columns: 112px 1fr 100px;
 
-        &:after {
-          position: absolute;
-          content: "";
-          width: 45px;
-          height: 45px;
-          // background-color: antiquewhite;
-          transform: translate(-50%, -50%) scaleX(-1) rotate(45deg);
-          left: 110%;
-          top: 110%;
-          // border-top: 2px black solid;
-        }
-
-        &.checked {
-          &:before,
-          &:after {
-            background: linear-gradient(
-              180deg,
-              black 2px,
-              transparent 2px,
-              transparent
-            );
-            animation: check-ani 0.5s forwards;
-            background-size: 0% 100%;
-            background-repeat: no-repeat;
+        // margin-bottom: 12px;
+        .remove-btn {
+          background-color: transparent;
+          border: none;
+          color: rgba($color: #000000, $alpha: 0.2);
+          font-family: caveat;
+          font-size: 30px;
+          &:hover {
+            cursor: pointer;
+            color: #ff000081;
+            font-weight: bold;
           }
+        }
+        .todo-checkbox,
+        .check-btn {
+          // position: relative;
+          // top: %;
+          left: 15px;
+          width: 30px;
+          height: 30px;
+          margin-left: 50px;
+          // margin: auto;
+        }
+        .check-btn {
+          position: relative;
+          background-color: transparent;
+          &:before {
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 45px;
+            // background-color: antiquewhite;
+            transform: translate(-50%, -50%) rotate(45deg);
+            // left: 0;
+            // top: 100%;
+            left: -10%;
+            top: 110%;
+
+            // background: linear-gradient(
+            //     45deg,
+            //     transparent 24px,
+            //     black 24px,
+            //     black 26px,
+            //     transparent 26px
+            //   ),
+            //   linear-gradient(
+            //     -45deg,
+            //     transparent 24px,
+            //     black 24px,
+            //     black 26px,
+            //     transparent 26px
+            //   );
+            //   // background-size: 50% 100% ;
+            //   // background-repeat: no-repeat;
+            // border-radius: 20%;
+            // visibility: hidden;
+          }
+
           &:after {
-            animation-delay: 0.5s;
+            position: absolute;
+            content: "";
+            width: 45px;
+            height: 45px;
+            // background-color: antiquewhite;
+            transform: translate(-50%, -50%) scaleX(-1) rotate(45deg);
+            left: 110%;
+            top: 110%;
+            // border-top: 2px black solid;
+          }
+
+          &.checked {
+            &:before,
+            &:after {
+              background: linear-gradient(
+                180deg,
+                black 2px,
+                transparent 2px,
+                transparent
+              );
+              animation: check-ani 0.5s forwards;
+              background-size: 0% 100%;
+              background-repeat: no-repeat;
+            }
+            &:after {
+              animation-delay: 0.5s;
+            }
           }
         }
       }
