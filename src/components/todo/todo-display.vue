@@ -5,13 +5,17 @@
     <ul class="display-list">
       <li v-for="todo in todos" :key="todo._id">
         <div class="todo-info-box" @click="openTodoModal(todo)">
-          <input
+          <!-- <input
             class="todo-checkbox"
             :checked="todo.isDone"
             type="checkbox"
             @change.stop="updateTodo($event.target.checked, 'isDone', todo._id)"
             @click.stop=""
-          />
+          /> -->
+          <button
+            :class="['check-btn', todo.isDone ? 'checked' : '']"
+            @click.stop="updateTodo(!todo.isDone, 'isDone', todo._id)"
+          ></button>
           <title-edit
             :title="todo.title"
             @changed="updateTodo($event, 'title', todo._id)"
